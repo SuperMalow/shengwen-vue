@@ -1,6 +1,6 @@
 {
   "name": "create-shengwen-vue",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "一个基于Vue 3 + Vite + Element Plus + Tailwind CSS的现代化项目模板生成器",
   "main": "index.js",
   "bin": {
