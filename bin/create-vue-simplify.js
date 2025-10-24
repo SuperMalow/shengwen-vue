@@ -4,13 +4,12 @@ const fs = require("fs-extra");
 const path = require("path");
 const chalk = require("chalk");
 
-// 简化的 inquirer 导入，优先使用直接模式
-let inquirer;
+// 使用 prompts 库，类似 Vite 的实现方式
+let prompts;
 try {
-  inquirer = require("inquirer");
+  prompts = require("prompts");
 } catch (error) {
-  // 如果 inquirer 不可用，将在交互模式中处理
-  inquirer = null;
+  prompts = null;
 }
 
 // 获取命令行参数
@@ -60,8 +59,8 @@ async function main() {
 
   if (!projectName) {
     // 交互模式
-    if (!inquirer) {
-      console.log(chalk.red("❌ 交互模式需要 inquirer 模块"));
+    if (!prompts) {
+      console.log(chalk.red("❌ 交互模式需要 prompts 模块"));
       console.log(chalk.yellow("💡 请使用以下方式创建项目:"));
       console.log(chalk.cyan("   npm init shengwen-vue <项目名称>"));
       console.log(chalk.cyan("   或 npx create-shengwen-vue <项目名称>"));
@@ -71,29 +70,34 @@ async function main() {
     }
 
     try {
-      const answers = await inquirer.prompt([
+      const answers = await prompts([
         {
-          type: "input",
+          type: "text",
           name: "projectName",
           message: "📝 请输入项目名称:",
-          validate: (input) => {
-            const error = validateProjectName(input);
+          validate: (value) => {
+            const error = validateProjectName(value);
             return error ? error : true;
           },
         },
         {
-          type: "input",
+          type: "text",
           name: "projectDescription",
           message: "📄 请输入项目描述 (可选):",
-          default: "基于Vue 3 + Vite + Element Plus的项目",
+          initial: "基于Vue 3 + Vite + Element Plus的项目",
         },
         {
-          type: "input",
+          type: "text",
           name: "author",
           message: "👤 请输入作者名称 (可选):",
-          default: "Developer",
+          initial: "Developer",
         },
       ]);
+
+      if (!answers.projectName) {
+        console.log(chalk.yellow("❌ 已取消创建项目"));
+        return;
+      }
 
       finalProjectName = answers.projectName;
       projectDescription = answers.projectDescription;
@@ -123,16 +127,14 @@ async function main() {
   console.log(`   作者: ${author}`);
   console.log("");
 
-  if (!projectName && inquirer) {
+  if (!projectName && prompts) {
     try {
-      const { confirm } = await inquirer.prompt([
-        {
-          type: "confirm",
-          name: "confirm",
-          message: "✅ 确认创建项目?",
-          default: true,
-        },
-      ]);
+      const { confirm } = await prompts({
+        type: "confirm",
+        name: "confirm",
+        message: "✅ 确认创建项目?",
+        initial: true,
+      });
 
       if (!confirm) {
         console.log(chalk.yellow("❌ 已取消创建项目"));
