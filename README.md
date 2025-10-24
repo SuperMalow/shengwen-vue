@@ -116,19 +116,6 @@ npm run dev
 - **Vue Router 4+** - Vue 官方路由
 - **Axios 1.12+** - HTTP 客户端
 
-## 自定义配置
-
-项目支持以下自定义配置：
-
-- 项目名称
-- 项目描述
-- 作者信息
-- 包管理器选择（npm/yarn/pnpm）
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request 来改进这个模板！
-
 ## 许可证
 
 MIT License
@@ -138,6 +125,6 @@ MIT License
 ### v1.0.0
 
 - 初始版本发布
-- 支持 Vue 3 + Vite + Element Plus + Tailwind CSS
+- 支持 Vue 3 + Vite + Element Plus + Pinia + Tailwind CSS
 - 交互式和直接创建模式
 - 完整的项目模板

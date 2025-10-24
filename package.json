@@ -23,12 +23,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/create-vue-simplify.git"
+    "url": "https://github.com/SuperMalow/shengwen-vue.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/create-vue-simplify/issues"
+    "url": "https://github.com/SuperMalow/shengwen-vue/issues"
   },
-  "homepage": "https://github.com/yourusername/create-vue-simplify#readme",
+  "homepage": "https://github.com/SuperMalow/shengwen-vue#readme",
   "engines": {
     "node": ">=14.0.0"
   },
