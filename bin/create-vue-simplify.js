@@ -4,14 +4,13 @@ const fs = require("fs-extra");
 const path = require("path");
 const chalk = require("chalk");
 
-// 动态导入 inquirer，处理版本兼容性问题
+// 简化的 inquirer 导入，优先使用直接模式
 let inquirer;
 try {
   inquirer = require("inquirer");
 } catch (error) {
-  console.error(chalk.red("❌ 无法加载 inquirer 模块，请确保已正确安装依赖"));
-  console.error(chalk.yellow("💡 尝试运行: npm install"));
-  process.exit(1);
+  // 如果 inquirer 不可用，将在交互模式中处理
+  inquirer = null;
 }
 
 // 获取命令行参数
@@ -61,6 +60,16 @@ async function main() {
 
   if (!projectName) {
     // 交互模式
+    if (!inquirer) {
+      console.log(chalk.red("❌ 交互模式需要 inquirer 模块"));
+      console.log(chalk.yellow("💡 请使用以下方式创建项目:"));
+      console.log(chalk.cyan("   npm init shengwen-vue <项目名称>"));
+      console.log(chalk.cyan("   或 npx create-shengwen-vue <项目名称>"));
+      console.log("");
+      console.log(chalk.gray("示例: npm init shengwen-vue my-vue-app"));
+      process.exit(1);
+    }
+
     try {
       const answers = await inquirer.prompt([
         {
@@ -90,9 +99,12 @@ async function main() {
       projectDescription = answers.projectDescription;
       author = answers.author;
     } catch (error) {
-      console.error(chalk.red("❌ 交互模式出现错误，请使用以下方式创建项目:"));
-      console.error(chalk.yellow("💡 npm init shengwen-vue <项目名称>"));
-      console.error(chalk.yellow("💡 或 npx create-shengwen-vue <项目名称>"));
+      console.log(chalk.red("❌ 交互模式出现错误"));
+      console.log(chalk.yellow("💡 请使用以下方式创建项目:"));
+      console.log(chalk.cyan("   npm init shengwen-vue <项目名称>"));
+      console.log(chalk.cyan("   或 npx create-shengwen-vue <项目名称>"));
+      console.log("");
+      console.log(chalk.gray("示例: npm init shengwen-vue my-vue-app"));
       process.exit(1);
     }
   } else {
@@ -111,7 +123,7 @@ async function main() {
   console.log(`   作者: ${author}`);
   console.log("");
 
-  if (!projectName) {
+  if (!projectName && inquirer) {
     try {
       const { confirm } = await inquirer.prompt([
         {
