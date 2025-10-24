@@ -1,10 +1,10 @@
 {
   "name": "create-shengwen-vue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "一个基于Vue 3 + Vite + Element Plus + Tailwind CSS的现代化项目模板生成器",
   "main": "index.js",
   "bin": {
-    "create-shengwen-vue": "./bin/create-vue-simplify.js"
+    "shengwen-vue": "./bin/create-vue-simplify.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
