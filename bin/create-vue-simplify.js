@@ -2,8 +2,17 @@
 
 const fs = require("fs-extra");
 const path = require("path");
-const inquirer = require("inquirer");
 const chalk = require("chalk");
+
+// 动态导入 inquirer，处理版本兼容性问题
+let inquirer;
+try {
+  inquirer = require("inquirer");
+} catch (error) {
+  console.error(chalk.red("❌ 无法加载 inquirer 模块，请确保已正确安装依赖"));
+  console.error(chalk.yellow("💡 尝试运行: npm install"));
+  process.exit(1);
+}
 
 // 获取命令行参数
 const args = process.argv.slice(2);
@@ -52,33 +61,40 @@ async function main() {
 
   if (!projectName) {
     // 交互模式
-    const answers = await inquirer.prompt([
-      {
-        type: "input",
-        name: "projectName",
-        message: "📝 请输入项目名称:",
-        validate: (input) => {
-          const error = validateProjectName(input);
-          return error ? error : true;
+    try {
+      const answers = await inquirer.prompt([
+        {
+          type: "input",
+          name: "projectName",
+          message: "📝 请输入项目名称:",
+          validate: (input) => {
+            const error = validateProjectName(input);
+            return error ? error : true;
+          },
         },
-      },
-      {
-        type: "input",
-        name: "projectDescription",
-        message: "📄 请输入项目描述 (可选):",
-        default: "基于Vue 3 + Vite + Element Plus的项目",
-      },
-      {
-        type: "input",
-        name: "author",
-        message: "👤 请输入作者名称 (可选):",
-        default: "Developer",
-      },
-    ]);
+        {
+          type: "input",
+          name: "projectDescription",
+          message: "📄 请输入项目描述 (可选):",
+          default: "基于Vue 3 + Vite + Element Plus的项目",
+        },
+        {
+          type: "input",
+          name: "author",
+          message: "👤 请输入作者名称 (可选):",
+          default: "Developer",
+        },
+      ]);
 
-    finalProjectName = answers.projectName;
-    projectDescription = answers.projectDescription;
-    author = answers.author;
+      finalProjectName = answers.projectName;
+      projectDescription = answers.projectDescription;
+      author = answers.author;
+    } catch (error) {
+      console.error(chalk.red("❌ 交互模式出现错误，请使用以下方式创建项目:"));
+      console.error(chalk.yellow("💡 npm init shengwen-vue <项目名称>"));
+      console.error(chalk.yellow("💡 或 npx create-shengwen-vue <项目名称>"));
+      process.exit(1);
+    }
   } else {
     // 直接模式
     const error = validateProjectName(projectName);
@@ -96,18 +112,22 @@ async function main() {
   console.log("");
 
   if (!projectName) {
-    const { confirm } = await inquirer.prompt([
-      {
-        type: "confirm",
-        name: "confirm",
-        message: "✅ 确认创建项目?",
-        default: true,
-      },
-    ]);
+    try {
+      const { confirm } = await inquirer.prompt([
+        {
+          type: "confirm",
+          name: "confirm",
+          message: "✅ 确认创建项目?",
+          default: true,
+        },
+      ]);
 
-    if (!confirm) {
-      console.log(chalk.yellow("❌ 已取消创建项目"));
-      return;
+      if (!confirm) {
+        console.log(chalk.yellow("❌ 已取消创建项目"));
+        return;
+      }
+    } catch (error) {
+      console.log(chalk.yellow("⚠️  无法显示确认提示，继续创建项目..."));
     }
   }
 
