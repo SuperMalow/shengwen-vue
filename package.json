@@ -1,0 +1,47 @@
+{
+  "name": "shengwen-vue",
+  "version": "1.0.0",
+  "description": "一个基于Vue 3 + Vite + Element Plus + Tailwind CSS的现代化项目模板生成器",
+  "main": "index.js",
+  "bin": {
+    "create-shengwen-vue": "./bin/create-vue-simplify.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "vite",
+    "element-plus",
+    "tailwindcss",
+    "template",
+    "scaffold",
+    "generator",
+    "cli"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/create-vue-simplify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/create-vue-simplify/issues"
+  },
+  "homepage": "https://github.com/yourusername/create-vue-simplify#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "bin/",
+    "template/",
+    "template.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "fs-extra": "^11.1.1",
+    "inquirer": "^9.2.12",
+    "chalk": "^4.1.2"
+  }
+}

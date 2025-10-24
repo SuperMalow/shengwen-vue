@@ -1,0 +1,48 @@
+{
+  "name": "Vue 3 项目模板",
+  "description": "基于Vue 3 + Vite + Element Plus + Tailwind CSS的现代化项目模板",
+  "version": "1.0.0",
+  "author": "Your Name",
+  "keywords": ["vue", "vite", "element-plus", "tailwindcss", "template"],
+  "template": {
+    "framework": "vue3",
+    "buildTool": "vite",
+    "uiLibrary": "element-plus",
+    "cssFramework": "tailwindcss",
+    "stateManagement": "pinia",
+    "router": "vue-router",
+    "httpClient": "axios"
+  },
+  "features": [
+    "Vue 3 Composition API",
+    "Vite 构建工具",
+    "Element Plus UI组件库",
+    "Tailwind CSS样式框架",
+    "Pinia状态管理",
+    "Vue Router路由管理",
+    "Axios HTTP客户端",
+    "TypeScript支持（可选）",
+    "ESLint代码检查",
+    "Prettier代码格式化"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.16",
+    "axios": "^1.12.2",
+    "element-plus": "^2.11.5",
+    "pinia": "^3.0.3",
+    "tailwindcss": "^4.1.16",
+    "vue": "^3.5.13",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.1.0"
+  }
+}
