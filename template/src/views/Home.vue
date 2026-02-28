@@ -7,16 +7,19 @@
                 </div>
             </template>
             <div class="flex justify-center items-center">
-                <el-button type="primary" @click="handleClick">测试按钮</el-button>
+                <!-- dark mode toggle -->
+                <div class="flex justify-center items-center">
+                    <el-button @click="darkModeStore.toggleTheme()">
+                        <el-icon>
+                            <Sunny v-if="isDarkTheme" />
+                            <Moon v-else />
+                        </el-icon>
+                    </el-button>
+                </div>
             </div>
             <template #footer>
                 <div class="flex justify-center items-center">
-                    <div class="mr-4">
-                        计数: {{ count }}
-                    </div>
-                    <div class="ml-4">
-                        两倍计数: {{ haloStore.doubleCount }}
-                    </div>
+                    <h1>测试卡片底部</h1>
                 </div>
             </template>
         </el-card>
@@ -24,16 +27,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useHaloStore } from '@/store';
-const haloStore = useHaloStore();
+import { computed } from 'vue';
+import { useDarkModeStore } from '@/store/theme';
+import { Sunny, Moon } from '@element-plus/icons-vue';
+import { ElCard, ElButton, ElIcon } from 'element-plus';
 
-const count = ref(haloStore.count);
+const darkModeStore = useDarkModeStore();
 
-const handleClick = () => {
-    haloStore.increment();
-    count.value++;
-};
+const isDarkTheme = computed(() => darkModeStore.isDarkTheme);
 
 </script>
 
