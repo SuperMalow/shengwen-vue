@@ -6,4 +6,11 @@ const login = (data) => {
   return http.post(url, data);
 };
 
-export { login };
+// 获取用户信息，通常用于鉴别token是否过期
+const pullUserInfo = () => {
+  // 获取用户信息接口
+  const url = 'api/account/info/';
+  return http.get(url);
+};
+
+export { login, pullUserInfo };

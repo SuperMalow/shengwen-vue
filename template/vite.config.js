@@ -15,4 +15,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  server: {
+    port: 5173, // 开发服务器端口
+    hosts: true, // 允许主机名访问
+    allowedHosts: ['localhost', '127.0.0.1'], // 允许的访问主机名列表
+  },
 });

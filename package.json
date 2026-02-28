@@ -41,8 +41,11 @@
     "LICENSE"
   ],
   "dependencies": {
+    "chalk": "^4.1.2",
     "fs-extra": "^11.1.1",
-    "prompts": "^2.4.2",
-    "chalk": "^4.1.2"
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "daisyui": "^5.5.19"
   }
 }

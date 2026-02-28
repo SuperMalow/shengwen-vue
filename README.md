@@ -8,6 +8,7 @@
 - ⚡ **Vite** - 快速的构建工具和开发服务器
 - 🎨 **Element Plus** - 企业级 UI 组件库
 - 🎯 **Tailwind CSS** - 实用优先的 CSS 框架
+- 🎨 **Daisy UI** - 个性化 UI 组件库
 - 📦 **Pinia** - 现代化的状态管理
 - 🛣️ **Vue Router** - 官方路由管理器
 - 🌐 **Axios** - HTTP 客户端
