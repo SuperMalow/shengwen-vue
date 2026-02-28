@@ -28,7 +28,7 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useDarkModeStore } from '@/store/theme';
+import { useDarkModeStore } from '@/store/themeStore.js';
 import { Sunny, Moon } from '@element-plus/icons-vue';
 import { ElCard, ElButton, ElIcon } from 'element-plus';
 

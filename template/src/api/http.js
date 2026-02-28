@@ -53,7 +53,7 @@ class Http {
           return Promise.reject(error);
         }
         // 当请求返回401未授权时，如果之前没有尝试过刷新token，则尝试刷新token
-        if (error.response.status === 401 && !originalRequest._retry) {
+        if (error.response?.status === 401 && !originalRequest._retry) {
           // access token 过期，尝试更新 access token
           originalRequest._retry = true; // 设置请求重试
           // 开始请求刷新 token

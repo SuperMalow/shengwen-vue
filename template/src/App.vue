@@ -14,7 +14,7 @@ const handlerPullUserInfo = async () => {
   try {
     const response = await pullUserInfo();
     console.log('获取用户信息响应 => ', response);
-    if (response.status === 200) {
+    if (response?.status === 200) {
       userStore.setUserInfo(response.data);
     } else {
       throw new Error(response.data.detail);
